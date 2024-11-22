@@ -50,16 +50,18 @@ for (let i = 0; i < stringList.length; i++) {
 const bodyDocument = document.querySelector("body");
 
 //CRIO ENTÃO UMA "const" ONDE IREI CRIAR MINHA LISTA HTML, FAÇO UM "Object.keys()" PARA ITERAR SOMENTE PELAS CHAVES DO "newObj"
-const ulList = Object.keys(newObj).map((item) => {
-  /** AQUI DENTRO EU MONTO O MEU HTML COM O "item" QUE É A CHAVE, E PARA CADA CHAVE EU PERCORRO O
-   * ARRAY QUE ARMAZENEI DENTRO DELAS, MONTANDO ENTÃO SUAS RESPECTIVAS "<li>"
-   * USO TAMBÉM O MÉTODO "join()" PARA QUE NÃO FIQUEM SEPARADOS POR VÍRGULAS
-   */
-  const htmlList = `<h2>${item}</h2><ul>${newObj[item]
-    .map((str) => `<li>${str}</li>`)
-    .join("")}</ul>`;
-  return htmlList;
-});
+const ulList = Object.keys(newObj)
+  .sort()
+  .map((item) => {
+    /** AQUI DENTRO EU MONTO O MEU HTML COM O "item" QUE É A CHAVE, E PARA CADA CHAVE EU PERCORRO O
+     * ARRAY QUE ARMAZENEI DENTRO DELAS, MONTANDO ENTÃO SUAS RESPECTIVAS "<li>"
+     * USO TAMBÉM O MÉTODO "join()" PARA QUE NÃO FIQUEM SEPARADOS POR VÍRGULAS
+     */
+    const htmlList = `<h2>${item}</h2><ul>${newObj[item]
+      .map((str) => `<li>${str}</li>`)
+      .join("")}</ul>`;
+    return htmlList;
+  });
 
 /**AQUI NO FINAL DO NOSSO DESAFIO EU PEGO O MEU "bodyDocument" E UTILIZO UM "innerHTML"
  * PARA QUE ELE POSSA RENDERIZAR A NOSSA LISTA MONTADA PASSANDO TAMBÉM UM "join()" PARA QUE NÃO RENDERIZE COM VÍRGULAS*/
